@@ -322,7 +322,7 @@ func (e *Explorer) readdir(dir string) {
 
 type Options struct {
 	Resilient bool `long:"resilient" description:"Do not stop on errors, instead print to stderr"`
-	Threads   int  `short:"j" long:"jobs" description:"Number of jobs(threads)" default:"128"`
+	Threads   int  `short:"j" long:"jobs" description:"Number of jobs(threads)" default:"32"`
 
 	Exclude []string `short:"x" long:"exclude" description:"Patterns to exclude. Can be specified multiple times"`
 	Filter  []string `short:"f" long:"filter" description:"Patterns to filter by. Can be specified multiple times"`
@@ -361,6 +361,10 @@ func main() {
 	defer cancel()
 
 	opts := getOpts()
+	// TMP:
+	if opts.Threads > 32 {
+		opts.Threads = 32
+	}
 
 	//TODO: Refactor Explorer to Lib with proper public API and sane defaults, so none of this calls will be necessary
 	explorer := NewExplorer(ctx)
