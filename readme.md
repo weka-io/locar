@@ -32,7 +32,7 @@ Usage:
 
 Application Options:
       --resilient    Do not stop on errors, instead print to stderr
-  -j, --jobs=        Number of jobs(threads) (default: 128)
+  -j, --jobs=        Number of jobs(threads) (default: 32). For now maximum also forced to 32
   -x, --exclude=     Patterns to exclude. Can be specified multiple times
   -f, --filter=      Patterns to filter by. Can be specified multiple times
   -t, --type=        Search entries of specific type
